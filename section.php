@@ -1,9 +1,9 @@
 <?php
 /*
 	Section: Edge To Edge
-	Author: WPJim
-	Author URI: http://www.wpjim.com
-	Description: Creates header top bar.
+	Author:  WPSamurais
+	Author URI: http://www.wpsamurais.com
+	Description: Edge2Edge is the perfect flexible section for creating great looking graphical sections. It will easily allow you to create a full width section with a colour or graphic background and enable you to quickly create strong text elements and include your own full code html be it a video, an optin-form or more. This is a versatile section that goes Edge2Edge.
 	Version: 1.0.0
 	Class Name: EdgeToEdge 
 	Workswith: templates, main, sidebar1, sidebar2, sidebar_wrap, header, footer, morefoot
@@ -130,6 +130,12 @@ class EdgeToEdge extends PageLinesSection {
 						'type' => 'color',
 						'shortexp' => 'Solid Background Color. (Optional)'
 					
+					),
+					array(
+						'key'			=> 'e2e_background_size',
+						'title' => 'Full-Width Background?',
+						'type' => 'check'
+					
 					)
 				)
 			),
@@ -179,6 +185,8 @@ class EdgeToEdge extends PageLinesSection {
 
 		$ebgc = $this->opt('e2e_background_color');
 
+		$ebgs = $this->opt('e2e_background_size');
+
 		$hgt = $this->opt('e2e_height');
 
 		$width = $this->opt('e2e_width');
@@ -212,8 +220,17 @@ class EdgeToEdge extends PageLinesSection {
 			<div class="e2eimg">
 				<img src="<?php echo $efg; ?>" />
 			</div>
-			
 
+
+				<!-- styles -->
+				<?php if($ebgs == true) { ?>
+				
+				<style>
+					#edge-to-edge<?php print_r($this->meta['clone']); ?> {
+						background-size: 100% 100% !important;
+					}
+				</style>
+				<?php } ?>
 				<style>
 				#edge-to-edge<?php print_r($this->meta['clone']); ?> {
 					background: #<?php echo $ebgc; ?> url(<?php echo $ebg; ?>) center;
@@ -234,8 +251,6 @@ class EdgeToEdge extends PageLinesSection {
 				}
 
 				</style>
-
-
 		</div>
 
 	<?php
